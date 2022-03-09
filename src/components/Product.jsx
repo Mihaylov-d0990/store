@@ -1,6 +1,22 @@
 import image from "../images/image.jpg"
 
+import React from "react"
+
 export default function Product() {
+
+    const images = React.useState(() => {
+        let arr = []
+        for (let i = 0; i < 4; i++) {
+            arr[i] = {
+                id: i,
+                image: image,
+                alt: `image${i}`
+            }
+        }
+
+        return arr
+    })[0]
+
 
     return (
         <div className="product">
@@ -8,18 +24,15 @@ export default function Product() {
                 <div className="product__content">
                     <div className="product__top">
                         <div className="product__grid">
-                            <div className="product__image">
-                                <img src={image} alt="" />
-                            </div>
-                            <div className="product__image">
-                                <img src={image} alt="" />
-                            </div>
-                            <div className="product__image">
-                                <img src={image} alt="" />
-                            </div>
-                            <div className="product__image">
-                                <img src={image} alt="" />
-                            </div>
+                            {
+                                images.map(image => {
+                                    return (
+                                        <div className="product__image" key={image.id}>
+                                            <img src={image.image} alt={image.alt} />
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                         <div className="product__main-info">
                             <div className="product__title title">Obi belt</div>

@@ -2,8 +2,36 @@ import profile from "../images/profile.svg"
 import cart from "../images/cart.svg"
 
 import { Link } from "react-router-dom"
+import React from "react"
 
 export default function Head() {
+
+    const navLinks = React.useState([
+        {
+            name: "Catalog",
+            link: "/catalog"
+        },
+        {
+            name: "Lorem",
+            link: "/"
+        },
+        {
+            name: "Lorem",
+            link: "/"
+        },
+        {
+            name: "Lorem",
+            link: "/"
+        },
+        {
+            name: "Lorem",
+            link: "/"
+        },
+        {
+            name: "Lorem",
+            link: "/"
+        },
+    ])[0]
 
     return (
         <div className="head dividing">
@@ -34,36 +62,15 @@ export default function Head() {
                     </div>
                     <div className="head__nav">
                         <nav>
-                            <Link to="/catalog">
-                                <div className="head__link">
-                                    Catalog
-                                </div>
-                            </Link>
-                            <Link to="/">
-                                <div className="head__link">
-                                    Lorem.
-                                </div>
-                            </Link>
-                            <Link to="/">
-                                <div className="head__link">
-                                    Lorem.
-                                </div>
-                            </Link>
-                            <Link to="/">
-                                <div className="head__link">
-                                    Lorem.
-                                </div>
-                            </Link>
-                            <Link to="/">
-                                <div className="head__link">
-                                    Lorem.
-                                </div>
-                            </Link>
-                            <Link to="/">
-                                <div className="head__link">
-                                    Lorem.
-                                </div>
-                            </Link>
+                            {
+                                navLinks.map(link => {
+                                    return (
+                                        <Link to={link.link} key={Math.random()}>
+                                            <div className="head__link">{link.name}</div>
+                                        </Link>
+                                    )
+                                })
+                            }
                         </nav>
                     </div>
                 </div>
