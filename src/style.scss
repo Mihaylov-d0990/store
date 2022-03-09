@@ -570,6 +570,7 @@ body {
 /* product */
 
 .product {
+    flex: 1 0 auto;
 
     &__content {
         padding: 20px 0px;

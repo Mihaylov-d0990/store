@@ -1,13 +1,52 @@
+import Intro from "./Intro"
+import React from "react"
+
+import { Link } from "react-router-dom"
+
+import cart from "../images/cart.svg"
+import image from "../images/image.jpg"
+
 export default function Main() {
+    let arr = []
+    for (let i = 0; i < 10; i++) {
+        arr[i] = {
+            id: i,
+            name: "Obi belt",
+            price: "19$ US",
+            image: image
+        }
+    }
+
+    const [favourites, setFavourites] = React.useState([...arr])
 
     return (
-        <div class="main">
-            <div class="container">
-                <div class="main__content">
-                    <div class="main__title title">Lorem, ipsum dolor.</div>
-                    <div class="main__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo adipisci autem culpa consequuntur doloremque voluptas aut in, libero sapiente nihil suscipit quaerat? Accusantium nostrum, nobis tempora debitis nulla officiis corrupti recusandae tenetur non mollitia illum quas maxime obcaecati dicta cupiditate culpa quaerat dolorem delectus dignissimos quis ipsum eveniet aliquid consequatur. Nulla ad quae harum quisquam. Cumque nulla dolorem velit id maxime aspernatur deleniti aliquam magni adipisci enim, vel perspiciatis. Ad, repellendus fuga inventore qui veniam voluptatum provident aliquam libero dolore fugiat animi quis earum sunt deleniti eius tenetur excepturi eveniet pariatur culpa optio odio facere. Velit atque tempore facilis. At!</div>
+        <>
+            <Intro />
+            <div class="dividing"></div>
+            <div class="favourites">
+                <div class="container">
+                    <div class="favourites__content">
+                        {favourites.map(fav => {
+                            return (
+                                <div class="favourites__item" key={fav.id}>
+                                    <Link to="/product" class="favourites__image">
+                                        <img src={fav.image} alt="" />
+                                    </Link>
+                                    <div class="favourites__item-bottom">
+                                        <div class="favourites__info">
+                                            <div class="favourites__text">{fav.name}</div>
+                                            <div class="favourites__price">{fav.price}</div>
+                                        </div>
+                                        <div class="favourites__cart">
+                                            <img src={cart} alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })}  
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }

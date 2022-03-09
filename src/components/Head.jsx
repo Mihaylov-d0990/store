@@ -1,6 +1,8 @@
 import profile from "../images/profile.svg"
 import cart from "../images/cart.svg"
 
+import { Link } from "react-router-dom"
+
 export default function Head() {
 
     return (
@@ -9,59 +11,59 @@ export default function Head() {
                 <div class="head__content">
                     <div class="head__top">
                         <div class="head__logo">
-                            <a href="/store-layout.github.io/">
+                            <Link to="/">
                                 Store-layout
-                            </a>
+                            </Link>
                         </div>
                         <div class="head__search">
                             <input type="text" />
                             <button>Search</button>
                         </div>
                         <div class="head__profile">
-                            <a href="login.html">
+                            <Link to="/login">
                                 <div class="head__login">
                                     <img src={profile} alt="" />
                                 </div>
-                            </a>
-                            <a href="cart.html">
+                            </Link>
+                            <Link to="/cart">
                                 <div class="head__basket">
                                     <img src={cart} alt="" />
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                     <div class="head__nav">
                         <nav>
-                            <a href="catalog.html">
+                            <Link to="/catalog">
                                 <div class="head__link">
                                     Catalog
                                 </div>
-                            </a>
-                            <a href="/store-layout.github.io/">
+                            </Link>
+                            <Link to="/">
                                 <div class="head__link">
                                     Lorem.
                                 </div>
-                            </a>
-                            <a href="/store-layout.github.io/">
+                            </Link>
+                            <Link to="/">
                                 <div class="head__link">
                                     Lorem.
                                 </div>
-                            </a>
-                            <a href="/store-layout.github.io/">
+                            </Link>
+                            <Link to="/">
                                 <div class="head__link">
                                     Lorem.
                                 </div>
-                            </a>
-                            <a href="/store-layout.github.io/">
+                            </Link>
+                            <Link to="/">
                                 <div class="head__link">
                                     Lorem.
                                 </div>
-                            </a>
-                            <a href="/store-layout.github.io/">
+                            </Link>
+                            <Link to="/">
                                 <div class="head__link">
                                     Lorem.
                                 </div>
-                            </a>
+                            </Link>
                         </nav>
                     </div>
                 </div>
