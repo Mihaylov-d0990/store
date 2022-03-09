@@ -295,7 +295,7 @@ body {
     
     &__cart {
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
         align-items: center;
         cursor: pointer;
 
@@ -438,7 +438,7 @@ body {
     
     &__cart {
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
         align-items: center;
         cursor: pointer;
 
@@ -740,7 +740,7 @@ body {
 
     &__purchase {
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
     }
 }
 
