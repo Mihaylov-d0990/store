@@ -22,22 +22,22 @@ export default function Main() {
     return (
         <>
             <Intro />
-            <div class="dividing"></div>
-            <div class="favourites">
-                <div class="container">
-                    <div class="favourites__content">
+            <div className="dividing"></div>
+            <div className="favourites">
+                <div className="container">
+                    <div className="favourites__content">
                         {favourites.map(fav => {
                             return (
-                                <div class="favourites__item" key={fav.id}>
-                                    <Link to="/product" class="favourites__image">
+                                <div className="favourites__item" key={fav.id}>
+                                    <Link to="/product" className="favourites__image">
                                         <img src={fav.image} alt="" />
                                     </Link>
-                                    <div class="favourites__item-bottom">
-                                        <div class="favourites__info">
-                                            <div class="favourites__text">{fav.name}</div>
-                                            <div class="favourites__price">{fav.price}</div>
+                                    <div className="favourites__item-bottom">
+                                        <div className="favourites__info">
+                                            <div className="favourites__text">{fav.name}</div>
+                                            <div className="favourites__price">{fav.price}</div>
                                         </div>
-                                        <div class="favourites__cart">
+                                        <div className="favourites__cart">
                                             <img src={cart} alt="" />
                                         </div>
                                     </div>

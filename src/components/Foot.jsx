@@ -1,33 +1,33 @@
 export default function Foot() {
     
     return (
-        <div class="foot dividing">
-            <div class="container">
-                <div class="foot__content">
-                    <div class="foot__columns">
-                        <div class="foot__column">
-                            <div class="foot__item">Lorem, ipsum.</div>
-                            <div class="foot__item">Lorem, ipsum.</div>
-                            <div class="foot__item">Lorem, ipsum.</div>
-                            <div class="foot__item">Lorem, ipsum.</div>
+        <div className="foot dividing">
+            <div className="container">
+                <div className="foot__content">
+                    <div className="foot__columns">
+                        <div className="foot__column">
+                            <div className="foot__item">Lorem, ipsum.</div>
+                            <div className="foot__item">Lorem, ipsum.</div>
+                            <div className="foot__item">Lorem, ipsum.</div>
+                            <div className="foot__item">Lorem, ipsum.</div>
                         </div>
-                        <div class="foot__column">
-                            <div class="foot__item">Lorem, ipsum.</div>
-                            <div class="foot__item">Lorem, ipsum.</div>
-                            <div class="foot__item">Lorem, ipsum.</div>
-                            <div class="foot__item">Lorem, ipsum.</div>
+                        <div className="foot__column">
+                            <div className="foot__item">Lorem, ipsum.</div>
+                            <div className="foot__item">Lorem, ipsum.</div>
+                            <div className="foot__item">Lorem, ipsum.</div>
+                            <div className="foot__item">Lorem, ipsum.</div>
                         </div>
-                        <div class="foot__column">
-                            <div class="foot__item">Lorem, ipsum.</div>
-                            <div class="foot__item">Lorem, ipsum.</div>
-                            <div class="foot__item">Lorem, ipsum.</div>
-                            <div class="foot__item">Lorem, ipsum.</div>
+                        <div className="foot__column">
+                            <div className="foot__item">Lorem, ipsum.</div>
+                            <div className="foot__item">Lorem, ipsum.</div>
+                            <div className="foot__item">Lorem, ipsum.</div>
+                            <div className="foot__item">Lorem, ipsum.</div>
                         </div>
-                        <div class="foot__column">
-                            <div class="foot__item">Lorem, ipsum.</div>
-                            <div class="foot__item">Lorem, ipsum.</div>
-                            <div class="foot__item">Lorem, ipsum.</div>
-                            <div class="foot__item">Lorem, ipsum.</div>
+                        <div className="foot__column">
+                            <div className="foot__item">Lorem, ipsum.</div>
+                            <div className="foot__item">Lorem, ipsum.</div>
+                            <div className="foot__item">Lorem, ipsum.</div>
+                            <div className="foot__item">Lorem, ipsum.</div>
                         </div>
                     </div>
                 </div>

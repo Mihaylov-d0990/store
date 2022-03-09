@@ -19,23 +19,23 @@ export default function Catalog() {
     const [favourites, setFavourites] = React.useState([...arr])
 
     return (
-        <div class="catalog">
-            <div class="container">
-                <div class="catalog__content">
-                    <div class="catalog__title title">Catalog</div>
-                        <div class="catalog__list">
+        <div className="catalog">
+            <div className="container">
+                <div className="catalog__content">
+                    <div className="catalog__title title">Catalog</div>
+                        <div className="catalog__list">
                             {favourites.map(fav => {
                                 return (
-                                    <div class="catalog__item" key={fav.id}>
-                                        <Link to="/product" class="catalog__image">
+                                    <div className="catalog__item" key={fav.id}>
+                                        <Link to="/product" className="catalog__image">
                                             <img src={fav.image} alt="" />
                                         </Link>
-                                        <div class="catalog__item-bottom">
-                                            <div class="catalog__info">
-                                                <div class="catalog__text">{fav.name}</div>
-                                                <div class="catalog__price">{fav.price}</div>
+                                        <div className="catalog__item-bottom">
+                                            <div className="catalog__info">
+                                                <div className="catalog__text">{fav.name}</div>
+                                                <div className="catalog__price">{fav.price}</div>
                                             </div>
-                                            <div class="catalog__cart">
+                                            <div className="catalog__cart">
                                                 <img src={cart} alt="" />
                                             </div>
                                         </div>

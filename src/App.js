@@ -17,7 +17,7 @@ function App() {
     
 
     return (
-        <div class="wrapper">
+        <div className="wrapper">
             <Head />
             <Routes>
                 <Route path="/" element={<Main />} />
