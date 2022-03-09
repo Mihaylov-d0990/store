@@ -2,10 +2,11 @@ import image from "../images/image.jpg"
 
 import React from "react"
 import { Link } from "react-router-dom"
+import DividingTitle from "./DividingTitle"
 
 export default function Cart() {
 
-    const cartItems = React.useState(() => {
+    const [cartItems, setCartItems] = React.useState(() => {
         let arr = []
         for (let i = 0; i < 4; i++) {
             arr[i] = {
@@ -19,10 +20,36 @@ export default function Cart() {
         }
 
         return arr
-    })[0]
+    })
+
+    const removeProduct = (id) => {
+        let arr = [...cartItems]
+        let arrId = 0
+
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].id === id) arrId = i
+        }
+
+        arr.splice(arrId, 1)
+        setCartItems([...arr])
+    }
+
+    const Bottom = ({length}) => {
+        if (length === 0) {
+            return <h1>Cart is empty</h1>
+        } else {
+            return (
+                <div className="cart__purchase">
+                    <div className="button">Purchase</div>
+                </div>
+            )
+        }
+    } 
 
     return (
-        <div className="cart">
+        <>
+            <DividingTitle text="Cart" />
+            <div className="cart">
                 <div className="container">
                     <div className="cart__content">
                         <div className="cart__list">
@@ -37,19 +64,17 @@ export default function Cart() {
                                                 <div className="cart__title">{item.name}</div>
                                                 <div className="cart__price">Price: <span>{item.price}$ US</span></div>
                                                 <div className="cart__text">{item.description}</div>
-                                                <div className="cart__button button">Remove from cart</div>
+                                                <div className="cart__button button" onClick={() => {removeProduct(item.id)}}>Remove from cart</div>
                                             </div>
                                         </div>
                                     )
                                 })
-                            }    
-                        
+                            }     
                         </div>
-                        <div className="cart__purchase">
-                            <div className="button">Purchase</div>
-                        </div>
+                        <Bottom length={cartItems.length}/>
                     </div>
                 </div>
             </div>
+        </>
     )
 }

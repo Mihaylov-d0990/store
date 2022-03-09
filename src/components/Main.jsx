@@ -2,13 +2,14 @@ import Intro from "./Intro"
 import React from "react"
 
 import List from "./List"
+import DividingTitle from "./DividingTitle"
 
 export default function Main() {
 
     return (
         <>
             <Intro />
-            <div className="dividing"></div>
+            <DividingTitle text="Favourites" />
             <div className="favourites">
                 <div className="container">
                     <List />
