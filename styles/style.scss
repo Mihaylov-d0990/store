@@ -91,6 +91,11 @@ body {
         column-gap: 20px;
     }
 
+    &__basket,
+    &__login {
+        cursor: pointer;
+    }
+
     &__nav {
 
         nav {
@@ -136,7 +141,7 @@ body {
 
 .main {
     height: 750px;
-    background-image: linear-gradient(180deg, rgba(255,255,255,0) 50%, rgba(28,27,33,1) 100%), url(./images/image.png);
+    background-image: linear-gradient(180deg, rgba(255,255,255,0) 50%, rgba(28,27,33,1) 100%), url(/images/image.png);
     background-repeat: no-repeat;
     
     background-position: 50% 53%;
@@ -208,7 +213,7 @@ body {
     }
 
     &__content {
-        background-image: linear-gradient(180deg, rgba($firstColor, 1) 0%,  rgba($firstColor, 0.7) 100%), url(./images/image.jpg);
+        background-image: linear-gradient(180deg, rgba($firstColor, 1) 0%,  rgba($firstColor, 0.7) 100%), url(/images/image.jpg);
         background-size: cover;
         background-position: 50% 50%;
         display: flex;
@@ -500,7 +505,7 @@ body {
     }
 
     &__content {
-        background-image: linear-gradient(180deg, rgba($firstColor, 1) 0%,  rgba($firstColor, 0.7) 100%), url(./images/image.jpg);
+        background-image: linear-gradient(180deg, rgba($firstColor, 1) 0%,  rgba($firstColor, 0.7) 100%), url(/images/image.jpg);
         background-size: cover;
         background-position: 50% 50%;
         display: flex;
@@ -726,13 +731,15 @@ body {
     &__image {
         position: relative;
         overflow: hidden;
+        cursor: pointer;
 
-        & > img {
+        img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: 50% 55%;
             pointer-events: none;
+            
         }
     }
     
@@ -763,13 +770,14 @@ body {
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        cursor: pointer;
+        
 
         img {
             background-color: rgba($firstColor, 0.6);
-            padding: 10px;
+            padding: 10px !important;
             border-radius: 50%;
             transition: 0.3s;
+            cursor: pointer;
 
             &:hover {
                 background-color: rgba($firstColor, 0.75);

@@ -1,15 +1,13 @@
-import profile from "../images/profile.svg"
-import cart from "../images/cart.svg"
-
-import { Link } from "react-router-dom"
 import React from "react"
+import Link from "next/link"
+import Image from "next/image"
 
 export default function Head() {
 
     const navLinks = React.useState([
         {
             name: "Catalog",
-            link: "/catalog"
+            link: "/"
         },
         {
             name: "Lorem",
@@ -39,7 +37,7 @@ export default function Head() {
                 <div className="head__content">
                     <div className="head__top">
                         <div className="head__logo">
-                            <Link to="/">
+                            <Link href="/">
                                 Store-layout
                             </Link>
                         </div>
@@ -48,14 +46,14 @@ export default function Head() {
                             <button>Search</button>
                         </div>
                         <div className="head__profile">
-                            <Link to="/login">
+                            <Link href="/login">
                                 <div className="head__login">
-                                    <img src={profile} alt="" />
+                                    <Image src="/images/profile.svg" width="24px" height="24px" />
                                 </div>
                             </Link>
-                            <Link to="/cart">
+                            <Link href="/cart">
                                 <div className="head__basket">
-                                    <img src={cart} alt="" />
+                                    <Image src="/images/cart.svg" width="24px" height="24px" />
                                 </div>
                             </Link>
                         </div>
@@ -65,7 +63,7 @@ export default function Head() {
                             {
                                 navLinks.map(link => {
                                     return (
-                                        <Link to={link.link} key={Math.random()}>
+                                        <Link href={link.link} key={Math.random()}>
                                             <div className="head__link">{link.name}</div>
                                         </Link>
                                     )

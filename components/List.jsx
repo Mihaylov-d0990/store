@@ -1,8 +1,7 @@
 import React from "react"
-import { Link } from "react-router-dom"
 
-import cart from "../images/cart.svg"
-import image from "../images/image.jpg"
+import Link from "next/link"
+import Image from "next/image"
 
 export default function List() {
 
@@ -15,7 +14,7 @@ export default function List() {
                 id: i,
                 name: "Obi belt",
                 price: "19",
-                itemImage: image,
+                itemImage: "/images/image.jpg",
                 imageAlt: `Obi belt${i}`
             }
         }
@@ -28,16 +27,20 @@ export default function List() {
             {list.map(item => {
                 return (
                     <div className="list__item" key={item.id}>
-                        <Link to="/product" className="list__image">
-                            <img src={item.itemImage} alt={item.imageAlt} />
-                        </Link>
+                        <div className="list__image">
+                            <Link href="/" >
+                                <Image src={item.itemImage} layout="responsive" width="100%" height="100%" />
+                            </Link>
+                        </div>
                         <div className="list__item-bottom">
                             <div className="list__info">
                                 <div className="list__text">{item.name}</div>
                                 <div className="list__price">Price: {item.price}$ US</div>
                             </div>
                             <div className="list__cart">
-                                <img src={cart} alt="cart icon" />
+                                <div>
+                                    <Image src="/images/cart.svg"  width="24px" height="24px" />
+                                </div>
                             </div>
                         </div>
                     </div>
