@@ -27,15 +27,16 @@ export default function List() {
             {list.map(item => {
                 return (
                     <div className="list__item" key={item.id}>
-                        <div className="list__image">
-                            <Link href="/" >
-                                <Image src={item.itemImage} layout="responsive" width="100%" height="100%" />
+                            <Link href="/product" >
+                                <div className="list__image">   
+                                    <Image src={item.itemImage} layout="responsive" width="100%" height="100%" />
+                                </div>
                             </Link>
-                        </div>
+                        
                         <div className="list__item-bottom">
                             <div className="list__info">
                                 <div className="list__text">{item.name}</div>
-                                <div className="list__price">Price: {item.price}$ US</div>
+                                <div className="list__price">Price: <span>{item.price}$ US</span></div>
                             </div>
                             <div className="list__cart">
                                 <div>

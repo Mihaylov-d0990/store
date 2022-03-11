@@ -7,7 +7,7 @@ export default function Head() {
     const navLinks = React.useState([
         {
             name: "Catalog",
-            link: "/"
+            link: "/catalog"
         },
         {
             name: "Lorem",
