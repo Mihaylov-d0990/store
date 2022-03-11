@@ -1,13 +1,11 @@
-import Header from "../components/Header"
-import Foot from "../components/Foot"
+import Wrapper from "../components/Wrapper"
 import List from "../components/List"
 import DividingTitle from "../components/DividingTitle"
 
 export default function Main() {
 
     return (
-        <>
-            <Header />
+        <Wrapper>
             <DividingTitle text="Catalog" />
             <div className="catalog">
                 <div className="container">
@@ -16,7 +14,6 @@ export default function Main() {
                     </div>
                 </div>
             </div>
-            <Foot />
-        </>
+        </Wrapper>
     )
 }

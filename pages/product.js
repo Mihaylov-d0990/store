@@ -3,8 +3,7 @@ import React from "react"
 import Image from "next/image"
 
 import DividingTitle from "../components/DividingTitle"
-import Header from "../components/Header"
-import Foot from "../components/Foot"
+import Wrapper from "../components/Wrapper"
 
 export default function Product() {
 
@@ -23,8 +22,7 @@ export default function Product() {
 
 
     return (
-        <>
-            <Header />
+        <Wrapper>
             <DividingTitle text="Obi belt" />
             <div className="product">
                 <div className="container">
@@ -57,7 +55,6 @@ export default function Product() {
                     </div>
                 </div>
             </div>
-            <Foot />
-        </>
+        </Wrapper>
     )
 }

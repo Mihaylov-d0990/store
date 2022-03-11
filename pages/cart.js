@@ -4,8 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import DividingTitle from "../components/DividingTitle"
-import Header from "../components/Header"
-import Foot from "../components/Foot"
+import Wrapper from "../components/Wrapper"
 
 export default function Cart() {
 
@@ -50,8 +49,7 @@ export default function Cart() {
     } 
 
     return (
-        <>
-            <Header />
+        <Wrapper>
             <DividingTitle text="Cart" />
             <div className="cart">
                 <div className="container">
@@ -81,7 +79,6 @@ export default function Cart() {
                     </div>
                 </div>
             </div>
-            <Foot />
-        </>
+        </Wrapper>
     )
 }

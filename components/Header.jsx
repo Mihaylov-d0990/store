@@ -5,7 +5,6 @@ import Image from "next/image"
 import Head from "next/head"
 
 export default function Header() {
-
     const navLinks = React.useState([
         {
             name: "Catalog",
@@ -33,6 +32,16 @@ export default function Header() {
         },
     ])[0]
 
+    const [switchButton, setSwitchButton] = React.useState(false)
+
+    React.useEffect(() => {
+        if (window.innerWidth < 481) setSwitchButton(() => (true))
+    }, []) 
+
+    const toggleCatalog = () => {
+        setSwitchButton(() => (!switchButton))
+    }
+
     return (
         <>
             <Head>
@@ -43,9 +52,7 @@ export default function Header() {
                     <div className="head__content">
                         <div className="head__top">
                             <div className="head__logo">
-                                <Link href="/">
-                                    Store-layout
-                                </Link>
+                                <Link href="/">Store-layout</Link>
                             </div>
                             <div className="head__search">
                                 <input type="text" />
@@ -64,18 +71,25 @@ export default function Header() {
                                 </Link>
                             </div>
                         </div>
-                        <div className="head__nav">
-                            <nav>
-                                {
-                                    navLinks.map(link => {
-                                        return (
-                                            <Link href={link.link} key={Math.random()} passHref> 
-                                                <div className="head__link">{link.name}</div>
-                                            </Link>
-                                        )
-                                    })
-                                }
-                            </nav>
+                        <div>
+                            <div className="head__switch-button" onClick={toggleCatalog}>
+                                {switchButton ? "Show navigation" : "Hide navigation"}
+                            </div>
+                            <div className={switchButton ? "head__nav head__nav_hide" : "head__nav head__nav_show"}>
+                                <nav>
+                                    {
+                                        navLinks.map(link => {
+                                            return (
+                                                <Link href={link.link} key={Math.random()} passHref> 
+                                                    <div 
+                                                        className={switchButton ? "head__link head__link_hide" : "head__link head__link_show"}
+                                                    >{link.name}</div>
+                                                </Link>
+                                            )
+                                        })
+                                    }
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>

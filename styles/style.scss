@@ -24,6 +24,14 @@ body {
     font-size: $mainFontSize;
     font-family: 'Merriweather', serif;
     height: 100%;
+
+    @media (max-width: 768px) {
+        font-size: calc($mainFontSize - 1px);
+    }
+
+    @media (max-width: 480px) {
+        font-size: calc($mainFontSize - 2px);
+    }
 }
 
 #__next {
@@ -46,7 +54,6 @@ body {
         column-gap: 20px;
         padding-bottom: 15px;
         align-items: center;
-        border-bottom: 2px solid $secondColor;
 
         @media (max-width: 768px) {
             flex-direction: column;
@@ -92,20 +99,54 @@ body {
         cursor: pointer;
     }
 
+    &__switch-button {
+        display: none;
+
+        @media (max-width: 480px) {
+            display: block;
+        }
+    }
+
     &__nav {
+        border-top: 2px solid $secondColor;
+        border-bottom: 2px solid $secondColor;
 
         nav {
             display: flex;
             justify-content: space-around;
             column-gap: 20px;
+            transition: 0.3s;
 
             @media (max-width: 1024px) {
                 column-gap: 10px;
             }
 
-            @media (max-width: 768px) {
+            @media (max-width: 480px) {
                 flex-direction: column;
             }
+        }
+
+        @media (max-width: 768px) {
+            margin-top: 8px;
+        }
+
+        @media (max-width: 480px) {
+            border-bottom: none;
+        }
+    }
+
+    &__nav_show {
+        
+        nav {
+            height: auto;
+        }
+    }
+
+    &__nav_hide {
+
+        nav {
+            height: 0px;
+            overflow: hidden;
         }
     }
 
@@ -132,6 +173,14 @@ body {
         }
 
     }
+
+    &__link_show {
+        opacity: 1;
+    }
+
+    &__link_hide {
+        opacity: 0;
+    }
 }
 
 /* main */
@@ -155,6 +204,10 @@ body {
         color: #fff;
         padding: 100px 0px;
         justify-content: flex-end;
+
+        @media (max-width: 480px) {
+            padding: 30px 0px;
+        }
     }
 
     &__title {
@@ -173,7 +226,7 @@ body {
 
     @media (max-width: 480px) {
         height: auto;
-        background-position: 50% 63%;
+        background-position: 50% 56%;
     }
 }
 
@@ -794,7 +847,6 @@ body {
 
 .dividing-title {
     background-color: $firstColor;
-    margin: 2px 0px;
     padding: 5px 0px;
 
     &__title {
