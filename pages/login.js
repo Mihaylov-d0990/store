@@ -1,14 +1,14 @@
 import Link from "next/link"
 
 import DividingTitle from "../components/DividingTitle"
-import Head from "../components/Head"
+import Header from "../components/Header"
 import Foot from "../components/Foot"
 
 export default function Login() {
 
     return (
         <>
-            <Head />
+            <Header />
             <DividingTitle text="Login" />
             <div className="login">
                 <div className="container">

@@ -27,9 +27,9 @@ export default function List() {
             {list.map(item => {
                 return (
                     <div className="list__item" key={item.id}>
-                            <Link href="/product" >
+                            <Link href="/product" passHref>
                                 <div className="list__image">   
-                                    <Image src={item.itemImage} layout="responsive" width="100%" height="100%" />
+                                    <Image src={item.itemImage} layout="responsive" width="100%" height="100%" alt={item.imageAlt} />
                                 </div>
                             </Link>
                         
@@ -40,7 +40,7 @@ export default function List() {
                             </div>
                             <div className="list__cart">
                                 <div>
-                                    <Image src="/images/cart.svg"  width="24px" height="24px" />
+                                    <Image src="/images/cart.svg"  width="24px" height="24px" alt="cart icon" />
                                 </div>
                             </div>
                         </div>

@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import DividingTitle from "../components/DividingTitle"
-import Head from "../components/Head"
+import Header from "../components/Header"
 import Foot from "../components/Foot"
 
 export default function Cart() {
@@ -51,7 +51,7 @@ export default function Cart() {
 
     return (
         <>
-            <Head />
+            <Header />
             <DividingTitle text="Cart" />
             <div className="cart">
                 <div className="container">
@@ -61,7 +61,7 @@ export default function Cart() {
                                 cartItems.map(item => {
                                     return (
                                         <div className="cart__item" key={item.id}>
-                                            <Link href="/product">
+                                            <Link href="/product" passHref>
                                                 <div className="cart__image">
                                                     <Image src={item.itemImage} alt={item.imageAlt} layout="responsive" width="100%" height="100%" />
                                                 </div>

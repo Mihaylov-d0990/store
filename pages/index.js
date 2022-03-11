@@ -1,4 +1,4 @@
-import Head from "../components/Head"
+import Header from "../components/Header"
 import Foot from "../components/Foot"
 import Intro from "../components/Intro"
 import List from "../components/List"
@@ -8,7 +8,7 @@ export default function Main() {
 
     return (
         <>
-            <Head />
+            <Header />
             <Intro />
             <DividingTitle text="Favourites" />
             <div className="favourites">

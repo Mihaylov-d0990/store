@@ -1,14 +1,14 @@
 import Link from "next/link"
 
 import DividingTitle from "../components/DividingTitle"
-import Head from "../components/Head"
+import Header from "../components/Header"
 import Foot from "../components/Foot"
 
 export default function Register() {
 
     return (
         <>
-            <Head />
+            <Header />
             <DividingTitle text="Register" />
             <div className="register">
                 <div className="container">

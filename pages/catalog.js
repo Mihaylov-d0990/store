@@ -1,4 +1,4 @@
-import Head from "../components/Head"
+import Header from "../components/Header"
 import Foot from "../components/Foot"
 import List from "../components/List"
 import DividingTitle from "../components/DividingTitle"
@@ -7,7 +7,7 @@ export default function Main() {
 
     return (
         <>
-            <Head />
+            <Header />
             <DividingTitle text="Catalog" />
             <div className="catalog">
                 <div className="container">
