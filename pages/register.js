@@ -13,13 +13,34 @@ export default function Register() {
                     <div className="register__content">
                         <div className="register__form">
                             <form>
-                                <span>Name</span><input className="register__name" type="text" />
-                                <span>Surname</span><input className="register__surname" type="text" />
-                                <span>Email</span><input className="register__email" type="text" />
-                                <span>Password</span><input className="register__password" type="text" />
-                                <span>Repeat password</span><input className="register__repeat-password" type="text" />
-                                <Link href="/login" className="register__login">Log in</Link>
-                                <input className="register__register" type="submit" value="Register" />
+                                <div className="register__field">
+                                    <span>Name</span>
+                                    <input className="register__name" type="text" />
+                                </div>
+                                <div className="register__field">
+                                    <span>Surname</span>
+                                    <input className="register__surname" type="text" />
+                                </div>
+                                <div className="register__field">
+                                    <span>Email</span>
+                                    <input className="register__email" type="text" />         
+                                </div>
+                                <div className="register__field">
+                                    <span>Password</span>
+                                    <input className="register__password" type="text" />
+                                </div>
+                                <div className="register__field">
+                                    <span>Repeat password</span>
+                                    <input className="register__repeat-password" type="text" />
+                                </div>
+                                <div className="register__field">
+                                    <div className="register__login">
+                                        <Link href="/login">Log in</Link>
+                                    </div>   
+                                </div>
+                                <div className="register__field">
+                                    <input className="register__register" type="submit" value="Register" />
+                                </div>
                             </form>
                         </div>
                     </div>

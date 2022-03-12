@@ -22,7 +22,7 @@ export default function Login() {
                                     <input type="text" />
                                 </div>
                                 <label><input type="checkbox" /><span>Keep me Signed in</span></label>
-                                <input type="submit" value="Send" />
+                                <input type="submit" value="Log in" />
                             </form>
                         </div>
                         <div className="login__forget">

@@ -3,8 +3,12 @@
     margin: 0;
 }
 
-$firstColor: #6384ff;
+$firstColor: #ffc252;
 $secondColor: #fff;
+$thirdColor: #000;
+$fourthColor: #acacac;
+$fifthColor: #fff;
+$sixthColor: #ffd485;
 
 
 a,
@@ -38,6 +42,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
+
 }
 
 /* head */
@@ -74,6 +79,13 @@ body {
         column-gap: 10px;
         flex-grow: 1;
 
+        input,
+        button {
+            font-size: 1em;
+            font-family: 'Merriweather', serif;
+            font-weight: 500;
+        }
+
         input {
             padding: 0px 10px;
             font-size: 1em;
@@ -85,7 +97,7 @@ body {
         button {
             padding: 0px 10px;
             border: none;
-            background-color: $secondColor;
+            background-color: $fifthColor;
         }
     }
 
@@ -159,13 +171,14 @@ body {
         align-items: center;
         padding: 10px 30px;
         box-sizing: border-box;
-        border-bottom: $borderSize solid $firstColor;
+        border-bottom: $borderSize solid rgba($secondColor, 0);
+        border-top: $borderSize solid rgba($secondColor, 0);
         transition: 0.3s;
         cursor: pointer;
 
         &:hover {
-            border-bottom: $borderSize solid $secondColor;
-            border-radius: $borderRadius 0px $borderRadius 0px;
+            border-bottom: $borderSize solid rgba($secondColor, 1);
+            border-top: $borderSize solid rgba($secondColor, 1);
         }
 
         @media (max-width: 768px) {
@@ -233,7 +246,7 @@ body {
 /* favourites */
 
 .favourites {
-
+    
 }
 
 /* catalog */
@@ -263,16 +276,14 @@ body {
     }
 
     &__content {
-        background-image: linear-gradient(180deg, rgba($firstColor, 1) 0%,  rgba($firstColor, 0.7) 100%), url(/images/image.jpg);
-        background-size: cover;
-        background-position: 50% 50%;
+        width: 350px;
+        background-color: #f7f7f7;
+        border: 1px solid $fourthColor;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
         row-gap: 10px;
         padding: 40px 30px;
-        color: $secondColor;
+        color: $thirdColor;
         border-radius: 3px;
 
         @media (max-width: 768px) {
@@ -302,8 +313,11 @@ body {
 
         input {
             height: 35px;
-            border: none;
-            background-color: $secondColor;
+            border: 1px solid $fourthColor;
+            background-color: $fifthColor;
+            font-size: 1em;
+            font-family: 'Merriweather', serif;
+            font-weight: 500;
 
             &[type=text] {
                 outline: none;
@@ -311,13 +325,11 @@ body {
             }
 
             &[type=submit] {
-                border-radius: 0px 0px 20px 20px;
                 cursor: pointer;
                 transition: 0.3s;
-                
 
                 &:hover {
-                    background-color: rgba($color: $secondColor, $alpha: 0.5);
+                    background-color: rgba($color: $thirdColor, $alpha: 0.1);
                 }
             }
         }
@@ -334,6 +346,12 @@ body {
         transition: 0.3s;
         padding-left: 20px;
 
+        a,
+        a:active,
+        a:visited {
+            color: $thirdColor;
+        }
+
         &:hover {
             opacity: 0.7;
         }
@@ -343,13 +361,12 @@ body {
         height: 1px;
         width: 100%;
         margin: 20px 0px;
-        background-color: $secondColor;
+        background-color: $thirdColor;
     }
 
     &__text {
         text-align: justify;
-        width: 350px;
-
+        
         @media (max-width: 768px) {
             width: 100%;
         }
@@ -460,14 +477,25 @@ body {
 .cart {
     flex: 1 0 auto;
     display: flex;
+    justify-content: center;
 
     &__content {
         padding: 20px 0px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__list {
+        @media (max-width: 480px) {
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+        }
     }
 
     &__item {
         display: flex;
-        max-height: 250px;
+        height: 250px;
         padding: 20px 0px;
         border-bottom: 1px solid rgba(rgb(184, 184, 184), 0.7);
 
@@ -478,32 +506,38 @@ body {
         @media (max-width: 480px) {
             flex-direction: column;
             row-gap: 20px;
-            max-height: none;
+            height: auto;
         }
     }
 
     &__image {
-        align-self: flex-start;
+        align-self: center;
+        flex: 1 0 200px;
         overflow: hidden;
-        width: 200px;        
+        height: 200px;        
         cursor: pointer;
         
+        span {
+            width: inherit !important;
+            height: inherit !important;
+        }
+
         img {
-            width: 100%;
-            height: 100%;
             object-fit: cover;
             pointer-events: none;
-            
+        }
+
+        @media (max-width: 480px) {
+            width: 200px;
+            align-self: flex-start;
         }
     }
 
     &__info {
-        width: 80%;
         padding: 20px;
-        height: 250px;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-between;
 
         @media (max-width: 480px) {
             width: 100%;
@@ -513,7 +547,7 @@ body {
     }
 
     &__title {
-        font-size: 3em;
+        font-size: 1.6em;
     }
 
     &__price {
@@ -559,16 +593,14 @@ body {
     }
 
     &__content {
-        background-image: linear-gradient(180deg, rgba($firstColor, 1) 0%,  rgba($firstColor, 0.7) 100%), url(/images/image.jpg);
-        background-size: cover;
-        background-position: 50% 50%;
+        background-color: #f7f7f7;
+        width: 350px;
+        border: 1px solid $fourthColor;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
         row-gap: 10px;
         padding: 40px 30px;
-        color: $secondColor;
+        color: $thirdColor;
         border-radius: 3px;
 
         @media (max-width: 768px) {
@@ -587,16 +619,32 @@ body {
             input {
                 height: 35px;
                 border: none;
-                background-color: $secondColor;
+                background-color: $fifthColor;
+                border: 1px solid $fourthColor;
                 padding: 0px 20px;
                 outline: none;
+                font-size: 1em;
+                font-family: 'Merriweather', serif;
+                font-weight: 500;
+            }
+
+            a,
+            a:active,
+            a:visited {
+                color: $thirdColor;
             }
         }
     }
 
+    &__field {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+    }
+
     &__login {
-        padding: 10px 0px;
         transition: 0.3s;
+        padding: 5px 0px;
 
         &:hover {
             opacity: 0.7;
@@ -604,7 +652,6 @@ body {
     }
 
     &__register {
-        border-radius: 0px 0px 20px 20px;
         cursor: pointer;
         transition: 0.3s; 
 
@@ -791,9 +838,11 @@ body {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: 50% 55%;
+            object-position: 50% center;
             pointer-events: none;
             
+            @media (max-width: 480px) {
+            }
         }
     }
     
@@ -828,9 +877,8 @@ body {
         justify-content: flex-end;
         align-items: center;
         
-
         img {
-            background-color: rgba($firstColor, 0.6);
+            background-color: $firstColor;
             padding: 10px !important;
             border-radius: 50%;
             transition: 0.3s;
@@ -851,6 +899,6 @@ body {
 
     &__title {
         color: $secondColor;
-        font-size: 3em;
+        font-size: 2.25em;
     }
 }
