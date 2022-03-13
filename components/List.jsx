@@ -25,8 +25,9 @@ export default function List() {
             localStorage.cart = JSON.stringify({id: id})
         } else {
             const locS = JSON.parse(localStorage.cart)
-            let obj = {id: 1}
-            locS = {locS, obj}
+            let obj = {}
+            obj[`id${id}`] = id
+            locS = {...locS, ...obj}
             localStorage.cart = JSON.stringify(locS)
         }
         console.log(JSON.parse(localStorage.cart))
@@ -49,7 +50,7 @@ export default function List() {
                                 <div className="list__price">Price: <span>{item.price}$ US</span></div>
                             </div>
                             <div className="list__cart">
-                                <div className="list__cart-image" onClick={addToCart}>
+                                <div className="list__cart-image" onClick={() => (addToCart(item.id))}>
                                     <Image src="/images/cart.svg"  width="24px" height="24px" alt="cart icon" />
                                 </div>
                             </div>
