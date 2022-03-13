@@ -276,7 +276,7 @@ body {
     }
 
     &__content {
-        width: 350px;
+        max-width: 350px;
         background-color: #f7f7f7;
         border: 1px solid $fourthColor;
         display: flex;

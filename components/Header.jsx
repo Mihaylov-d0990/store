@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import Image from "next/image"
-
+import { useRouter } from "next/router"
 import Head from "next/head"
 
 export default function Header() {
@@ -32,14 +32,31 @@ export default function Header() {
         },
     ])[0]
 
-    const [switchButton, setSwitchButton] = React.useState(false)
+    const [mobileRender, setMobileRender] = React.useState(false)
+    const [toggleNav, setToggleNav] = React.useState(false)
+    const [WindowWidth, setPrevWindowWidth] = React.useState(0)
 
-    React.useEffect(() => {
-        if (window.innerWidth < 481) setSwitchButton(() => (true))
-    }, []) 
+    const router = useRouter()
 
-    const toggleCatalog = () => {
-        setSwitchButton(() => (!switchButton))
+    const windowResize = (e) => {
+        setPrevWindowWidth(e.currentTarget.innerWidth)
+    }
+
+    React.useEffect(() => {    
+        window.addEventListener("resize", windowResize)
+
+        if (router.isReady) {
+            if (window.innerWidth < 481 && !mobileRender) setMobileRender(true)
+            else if (window.innerWidth > 480 && mobileRender) setMobileRender(false)
+        }
+
+        return () => {
+            window.removeEventListener("resize", windowResize)
+        }
+    }, [WindowWidth])
+
+    const toggleNavBar = () => {
+        setToggleNav(() => !toggleNav)
     }
 
     return (
@@ -72,18 +89,17 @@ export default function Header() {
                             </div>
                         </div>
                         <div>
-                            <div className="head__switch-button" onClick={toggleCatalog}>
-                                {switchButton ? "Show navigation" : "Hide navigation"}
+                            <div className="head__switch-button" onClick={toggleNavBar}>
+                                {toggleNav ? "Hide navigation" : "Show navigation"}
                             </div>
-                            <div className={switchButton ? "head__nav head__nav_hide" : "head__nav head__nav_show"}>
+                            <div className={(toggleNav && mobileRender) || !mobileRender ? "head__nav head__nav_show" : "head__nav head__nav_hide"}>
                                 <nav>
                                     {
                                         navLinks.map(link => {
                                             return (
                                                 <Link href={link.link} key={Math.random()} passHref> 
                                                     <div 
-                                                        className={switchButton ? "head__link head__link_hide" : "head__link head__link_show"}
-                                                    >{link.name}</div>
+                                                        className={(toggleNav && mobileRender) || !mobileRender ? "head__link head__link_show" : "head__link head__link_hide"}>{link.name}</div>
                                                 </Link>
                                             )
                                         })
