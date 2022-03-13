@@ -8,32 +8,41 @@ import Wrapper from "../components/Wrapper"
 
 export default function Cart() {
 
-    const [cartItems, setCartItems] = React.useState(() => {
-        let arr = []
-        for (let i = 0; i < 4; i++) {
-            arr[i] = {
-                id: i,
-                name: "Obi belt",
-                price: "19",
-                itemImage: "/images/image.jpg",
-                imageAlt: `image${i}`,
-                description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci tempora nesciunt eos sint dolores quaerat dolorem quibusdam magni nulla illum."
+    const [cartItems, setCartItems] = React.useState([])
+    const [rerender, setRerender] = React.useState(false) 
+
+    const cartToArray = (cart) => {
+
+        let newCartItems = []
+        for (let key in cart) {
+            cart[key].id = key
+            cart[key].description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci tempora nesciunt eos sint dolores quaerat dolorem quibusdam magni nulla illum."
+            newCartItems.push({...cart[key]})
+        }
+        
+        return [...newCartItems]
+    }
+
+    React.useEffect(() => {
+        console.log("rerender");
+        let cart = JSON.parse(localStorage.cart)
+        setCartItems(cartToArray(cart))
+    }, [rerender])
+    
+    
+
+    const removeProduct = (id) => {
+        let cart = JSON.parse(localStorage.cart)
+
+        for(let key in cart) {
+            if (key === id) {
+                delete cart[key]
+                break
             }
         }
 
-        return arr
-    })
-
-    const removeProduct = (id) => {
-        let arr = [...cartItems]
-        let arrId = 0
-
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i].id === id) arrId = i
-        }
-
-        arr.splice(arrId, 1)
-        setCartItems([...arr])
+        localStorage.cart = JSON.stringify(cart)
+        setRerender(!rerender)
     }
 
     const Bottom = ({length}) => {
@@ -56,12 +65,12 @@ export default function Cart() {
                     <div className="cart__content">
                         <div className="cart__list">
                             {
-                                cartItems.map(item => {
+                                cartItems.map(item => { 
                                     return (
                                         <div className="cart__item" key={item.id}>
                                             <Link href="/product" passHref>
                                                 <div className="cart__image">
-                                                    <Image src={item.itemImage} alt={item.imageAlt} layout="responsive" width="100%" height="100%" />
+                                                    <Image src={item.image} alt={item.alt} layout="responsive" width="100%" height="100%" />
                                                 </div>
                                             </Link>
                                             <div className="cart__info">

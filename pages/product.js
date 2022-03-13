@@ -12,8 +12,8 @@ export default function Product() {
         for (let i = 0; i < 4; i++) {
             arr[i] = {
                 id: i,
-                image: "/images/image.jpg",
-                alt: `image${i}`
+                itemImage: "/images/image.jpg",
+                imageAlt: `image${i}`
             }
         }
 
@@ -33,7 +33,7 @@ export default function Product() {
                                     images.map(image => {
                                         return (
                                             <div className="product__image" key={image.id}>
-                                                <Image src={image.image} alt={image.alt} layout="responsive" width="100%" height="100%"/>
+                                                <Image src={image.itemImage} alt={image.itemAlt} layout="responsive" width="100%" height="100%"/>
                                             </div>
                                         )
                                     })
