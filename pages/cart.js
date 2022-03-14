@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux"
 import DividingTitle from "../components/DividingTitle"
 import Wrapper from "../components/Wrapper"
 import actions from "../store/actions"
+import checkLocalCart from "../functions/checkLocalCart"
 
 export default function Cart() {
 
@@ -49,10 +50,9 @@ export default function Cart() {
 
         localStorage.cart = JSON.stringify(cart)
         
-
         dispatch({
             type: actions.UPDATE_COUNT, 
-            payload: Object.keys(JSON.parse(localStorage.cart)).length
+            payload: checkLocalCart()
         })
         setRerender(!rerender)
     }

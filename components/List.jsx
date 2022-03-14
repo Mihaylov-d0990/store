@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 
 import actions from "../store/actions"
+import checkLocalCart from "../functions/checkLocalCart"
 
 export default function List() {
 
@@ -50,7 +51,7 @@ export default function List() {
 
         dispatch({
             type: actions.UPDATE_COUNT, 
-            payload: Object.keys(JSON.parse(localStorage.cart)).length
+            payload: checkLocalCart()
         })
     }
 

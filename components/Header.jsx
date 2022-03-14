@@ -7,6 +7,7 @@ import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 
 import actions from "../store/actions"
+import checkLocalCart from "../functions/checkLocalCart"
 
 export default function Header() {
     const navLinks = React.useState([
@@ -61,12 +62,14 @@ export default function Header() {
 
     const dispatch = useDispatch()
     React.useEffect(() => {
-        
+        console.log(typeof localStorage.cart);
         dispatch({
             type: actions.UPDATE_COUNT, 
-            payload: Object.keys(JSON.parse(localStorage.cart)).length
+            payload: checkLocalCart()
+            
         })
-    }, [])
+        
+    }, [dispatch])
 
     const toggleNavBar = () => {
         setToggleNav(() => !toggleNav)
