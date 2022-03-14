@@ -35,6 +35,7 @@ export default function Header() {
     const [mobileRender, setMobileRender] = React.useState(false)
     const [toggleNav, setToggleNav] = React.useState(false)
     const [WindowWidth, setPrevWindowWidth] = React.useState(0)
+    const [cartItemsCount, setCartItemsCount] = React.useState(0)
 
     const router = useRouter()
 
@@ -54,6 +55,15 @@ export default function Header() {
             window.removeEventListener("resize", windowResize)
         }
     }, [WindowWidth])
+
+    React.useEffect(() => {
+        let ls = JSON.parse(localStorage.cart)
+        let lsLength = 0
+        for (let key in ls) {
+            lsLength += 1 
+        }
+        setCartItemsCount(lsLength)
+    }, [])
 
     const toggleNavBar = () => {
         setToggleNav(() => !toggleNav)
@@ -83,8 +93,9 @@ export default function Header() {
                                     </div>
                                 </Link>
                                 <Link href="/cart" passHref>
-                                    <div className="head__basket">
+                                    <div className="head__cart">
                                         <Image src="/images/cart.svg" width="24px" height="24px" alt="cart icon" />
+                                        <div className="head__cart-counter"><p>{cartItemsCount}</p></div>
                                     </div>
                                 </Link>
                             </div>

@@ -47,7 +47,6 @@ export default function List() {
             locS = {...locS, ...obj}
             localStorage.cart = JSON.stringify(locS)
         }
-        console.log(JSON.parse(localStorage.cart))
     }
 
     return (

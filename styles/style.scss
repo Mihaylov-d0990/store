@@ -105,9 +105,26 @@ body {
         column-gap: 20px;
     }
 
-    &__basket,
+    &__cart,
     &__login {
         cursor: pointer;
+    }
+
+    &__cart {
+        position: relative;
+    }
+
+    &__cart-counter {
+        width: 20px;
+        height: 20px;
+        background-color: rgba(255, 45, 45, 0.5);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 12px;
+        top: -7px;
     }
 
     &__switch-button {
@@ -568,6 +585,17 @@ body {
         @media (max-width: 768px) {
             text-align: justify;
         }
+    }
+
+    &__message {
+        border-radius: 3px;
+        display: flex;
+        border: 1px solid $fourthColor;
+        background-color: #f7f7f7;
+        padding: 35px 50px;
+        font-size: 1.3em;
+        text-align: center;
+        line-height: 36px
     }
 
     &__purchase {

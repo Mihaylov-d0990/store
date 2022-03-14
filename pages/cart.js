@@ -15,6 +15,12 @@ export default function Cart() {
 
         let newCartItems = []
         for (let key in cart) {
+
+            if (Number(key).toString() === "NaN") {
+                localStorage.cart = JSON.stringify({})
+                return []
+            }
+
             cart[key].id = key
             cart[key].description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci tempora nesciunt eos sint dolores quaerat dolorem quibusdam magni nulla illum."
             newCartItems.push({...cart[key]})
@@ -24,12 +30,9 @@ export default function Cart() {
     }
 
     React.useEffect(() => {
-        console.log("rerender");
         let cart = JSON.parse(localStorage.cart)
         setCartItems(cartToArray(cart))
     }, [rerender])
-    
-    
 
     const removeProduct = (id) => {
         let cart = JSON.parse(localStorage.cart)
@@ -47,7 +50,13 @@ export default function Cart() {
 
     const Bottom = ({length}) => {
         if (length === 0) {
-            return <h1>Cart is empty</h1>
+            return (
+                <div className="cart__message">
+                    <div className="cart__message-text">
+                        At the moment, the basket is empty.<br/>Add some product.
+                    </div>
+                </div>
+            )
         } else {
             return (
                 <div className="cart__purchase">
