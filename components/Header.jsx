@@ -3,6 +3,10 @@ import Link from "next/link"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import Head from "next/head"
+import { useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
+
+import actions from "../store/actions"
 
 export default function Header() {
     const navLinks = React.useState([
@@ -35,7 +39,6 @@ export default function Header() {
     const [mobileRender, setMobileRender] = React.useState(false)
     const [toggleNav, setToggleNav] = React.useState(false)
     const [WindowWidth, setPrevWindowWidth] = React.useState(0)
-    const [cartItemsCount, setCartItemsCount] = React.useState(0)
 
     const router = useRouter()
 
@@ -56,19 +59,20 @@ export default function Header() {
         }
     }, [WindowWidth])
 
+    const dispatch = useDispatch()
     React.useEffect(() => {
-        let ls = JSON.parse(localStorage.cart)
-        let lsLength = 0
-        for (let key in ls) {
-            lsLength += 1 
-        }
-        setCartItemsCount(lsLength)
+        
+        dispatch({
+            type: actions.UPDATE_COUNT, 
+            payload: Object.keys(JSON.parse(localStorage.cart)).length
+        })
     }, [])
 
     const toggleNavBar = () => {
         setToggleNav(() => !toggleNav)
     }
 
+    const cartItemsQuantity = useSelector(state => state.count.count)
 
     return (
         <>
@@ -95,7 +99,7 @@ export default function Header() {
                                 <Link href="/cart" passHref>
                                     <div className="head__cart">
                                         <Image src="/images/cart.svg" width="24px" height="24px" alt="cart icon" />
-                                        <div className="head__cart-counter"><p>{cartItemsCount}</p></div>
+                                        <div className="head__cart-counter"><p>{cartItemsQuantity}</p></div>
                                     </div>
                                 </Link>
                             </div>

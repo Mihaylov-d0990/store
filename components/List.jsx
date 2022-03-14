@@ -1,9 +1,14 @@
 import React from "react"
+import { useDispatch } from "react-redux"
 
 import Link from "next/link"
 import Image from "next/image"
 
+import actions from "../store/actions"
+
 export default function List() {
+
+    const dispatch = useDispatch()
 
     const list = React.useState(() => {
         let arr = []
@@ -21,32 +26,32 @@ export default function List() {
     })[0]
 
     const addToCart = (item) => {
-        if (typeof localStorage.cart === "undefined") {
-            let obj = {}
 
-            obj[item.id] = {
-                name: item.name,
-                price: item.price,
-                image: item.itemImage,
-                alt: item.imageAlt
-            }
-            obj = {...obj}
+        let addingItem = {}
 
-            localStorage.cart = JSON.stringify(obj)
-        } else {
-            const locS = JSON.parse(localStorage.cart)
-            let obj = {}
-            
-            obj[item.id] = {
-                name: item.name,
-                price: item.price,
-                image: item.itemImage,
-                alt: item.imageAlt
-            }
-
-            locS = {...locS, ...obj}
-            localStorage.cart = JSON.stringify(locS)
+        addingItem[item.id] = {
+            name: item.name,
+            price: item.price,
+            image: item.itemImage,
+            alt: item.imageAlt
         }
+
+        if (typeof localStorage.cart === "undefined") {
+            
+            addingItem = {...addingItem}
+
+            localStorage.cart = JSON.stringify(addingItem)
+        } else {
+            const cartObject = JSON.parse(localStorage.cart)
+
+            cartObject = {...cartObject, ...addingItem}
+            localStorage.cart = JSON.stringify(cartObject)
+        }
+
+        dispatch({
+            type: actions.UPDATE_COUNT, 
+            payload: Object.keys(JSON.parse(localStorage.cart)).length
+        })
     }
 
     return (

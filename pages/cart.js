@@ -1,10 +1,11 @@
 import React from "react"
-
 import Image from "next/image"
 import Link from "next/link"
+import { useDispatch } from "react-redux"
 
 import DividingTitle from "../components/DividingTitle"
 import Wrapper from "../components/Wrapper"
+import actions from "../store/actions"
 
 export default function Cart() {
 
@@ -34,6 +35,8 @@ export default function Cart() {
         setCartItems(cartToArray(cart))
     }, [rerender])
 
+    const dispatch = useDispatch()
+
     const removeProduct = (id) => {
         let cart = JSON.parse(localStorage.cart)
 
@@ -45,6 +48,12 @@ export default function Cart() {
         }
 
         localStorage.cart = JSON.stringify(cart)
+        
+
+        dispatch({
+            type: actions.UPDATE_COUNT, 
+            payload: Object.keys(JSON.parse(localStorage.cart)).length
+        })
         setRerender(!rerender)
     }
 
