@@ -1,6 +1,5 @@
 import React from "react"
 import { useDispatch } from "react-redux"
-
 import Link from "next/link"
 import Image from "next/image"
 
@@ -60,7 +59,7 @@ export default function List() {
             {list.map(item => {
                 return (
                     <div className="list__item" key={item.id}>
-                            <Link href="/product" passHref>
+                            <Link href={`/product/${item.id}`} passHref>
                                 <div className="list__image">   
                                     <Image src={item.itemImage} layout="responsive" width="100%" height="100%" alt={item.imageAlt} />
                                 </div>

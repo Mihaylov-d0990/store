@@ -27,13 +27,15 @@ export default function Cart() {
             cart[key].description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci tempora nesciunt eos sint dolores quaerat dolorem quibusdam magni nulla illum."
             newCartItems.push({...cart[key]})
         }
-        
         return [...newCartItems]
     }
 
     React.useEffect(() => {
-        let cart = JSON.parse(localStorage.cart)
-        setCartItems(cartToArray(cart))
+        if (typeof localStorage.cart !== "undefined") {
+            let cart = JSON.parse(localStorage.cart)
+            setCartItems(cartToArray(cart))
+        }
+        
     }, [rerender])
 
     const dispatch = useDispatch()

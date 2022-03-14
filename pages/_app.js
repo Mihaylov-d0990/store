@@ -2,8 +2,14 @@ import '../styles/style.scss'
 import store from "../store/store"
 import { Provider } from 'react-redux'
 import { createWrapper } from 'next-redux-wrapper'
+import React from 'react'
 
 const MyApp = ({ Component, pageProps }) => {
+
+    React.useEffect(() => {
+        if (typeof localStorage.cart === "undefined") localStorage.cart = JSON.stringify({})  
+    })
+
     return (
         <Provider store={store}>
             <Component {...pageProps} />

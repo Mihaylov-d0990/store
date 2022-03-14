@@ -62,11 +62,9 @@ export default function Header() {
 
     const dispatch = useDispatch()
     React.useEffect(() => {
-        console.log(typeof localStorage.cart);
         dispatch({
             type: actions.UPDATE_COUNT, 
             payload: checkLocalCart()
-            
         })
         
     }, [dispatch])

@@ -1,25 +1,23 @@
 import React from "react"
-
 import Image from "next/image"
 
-import DividingTitle from "../components/DividingTitle"
-import Wrapper from "../components/Wrapper"
+import DividingTitle from "../../components/DividingTitle"
+import Wrapper from "../../components/Wrapper"
 
 export default function Product() {
 
-    const images = React.useState(() => {
+    const [images, ] = React.useState(() => {
         let arr = []
         for (let i = 0; i < 4; i++) {
             arr[i] = {
                 id: i,
                 itemImage: "/images/image.jpg",
-                imageAlt: `image${i}`
+                imageAlt: `Obi belt ${i}`
             }
         }
 
         return arr
-    })[0]
-
+    }) 
 
     return (
         <Wrapper>
