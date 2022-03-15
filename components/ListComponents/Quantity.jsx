@@ -6,6 +6,7 @@ export default function Quantity({ id, quantity }) {
     const dispatch = useDispatch()
     const list = useSelector(state => state.list.list)
 
+    // Increase quantity of item in state
 
     const addThing = () => {
         let newList = list.map(item => {
@@ -17,6 +18,8 @@ export default function Quantity({ id, quantity }) {
         })
         dispatch({type: actions.UPDATE_LIST, payload: newList})
     }
+
+    // Decrease quantity of item in state
 
     const removeThing = () => {
         let newList = list.map(item => {
@@ -30,10 +33,10 @@ export default function Quantity({ id, quantity }) {
     }
 
     return (
-        <div className="list__quantity">
-            <button onClick={addThing}>+</button>
-            <p>{quantity}</p>
-            <button onClick={removeThing}>-</button>
+        <div className="list__quantity quantity">
+            <button onClick={addThing} className="quantity__button">+</button>
+            <div className="quantity__value">{quantity}</div>
+            <button onClick={removeThing} className="quantity__button">-</button>
         </div>
     )
 }

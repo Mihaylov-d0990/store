@@ -10,6 +10,7 @@ import actions from "../store/actions"
 import checkLocalCart from "../functions/checkLocalCart"
 
 export default function Header() {
+
     const navLinks = React.useState([
         {
             name: "Catalog",
@@ -47,6 +48,8 @@ export default function Header() {
         setPrevWindowWidth(e.currentTarget.innerWidth)
     }
 
+    // This hook is used to properly display the navigation bar on mobile devices
+
     React.useEffect(() => {    
         window.addEventListener("resize", windowResize)
 
@@ -61,6 +64,9 @@ export default function Header() {
     }, [WindowWidth])
 
     const dispatch = useDispatch()
+
+    // This hook is used to display the number of items in the cart
+
     React.useEffect(() => {
         dispatch({
             type: actions.UPDATE_COUNT, 

@@ -587,6 +587,12 @@ body {
         }
     }
 
+    &__controller {
+        display: flex;
+        align-items: center;
+        column-gap: 20px;
+    }
+
     &__message {
         border-radius: 3px;
         display: flex;
@@ -889,6 +895,12 @@ body {
         }
     }   
 
+    &__info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+    }
+
     &__text {
         color: #000;
     }
@@ -908,11 +920,6 @@ body {
         column-gap: 15px;
     }
 
-    &__quantity {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-    }
 
     &__cart {
         display: flex;
@@ -943,5 +950,28 @@ body {
     &__title {
         color: $secondColor;
         font-size: 2.25em;
+    }
+}
+
+/* product quantity */
+
+.quantity {
+    display: flex;
+    column-gap: 5px; 
+
+    &__button {
+        box-sizing: border-box;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        border: 1px solid $fourthColor;
+        background-color: #f7f7f7;
+        color: $thirdColor;
+        cursor: pointer;
+    }
+
+    &__value {
+        width: 15px;
+        text-align: center;
     }
 }

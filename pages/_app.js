@@ -6,6 +6,8 @@ import React from 'react'
 
 const MyApp = ({ Component, pageProps }) => {
 
+    // Determine cart in local storage
+
     React.useEffect(() => {
         if (typeof localStorage.cart === "undefined") localStorage.cart = JSON.stringify({})  
     })

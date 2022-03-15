@@ -10,6 +10,8 @@ export default function ListItem({ item }) {
 
     const dispatch = useDispatch()
 
+    // Add an item in the cart, in state and local storage
+
     const addToCart = (item) => {
 
         let addingItem = {}
@@ -22,14 +24,12 @@ export default function ListItem({ item }) {
             quantity: item.quantity
         }
 
-        if (typeof localStorage.cart === "undefined") {
-            
+        if (typeof localStorage.cart === "undefined") {   
             addingItem = {...addingItem}
-
             localStorage.cart = JSON.stringify(addingItem)
+
         } else {
             const cartObject = JSON.parse(localStorage.cart)
-
             if (cartObject[item.id]) {
                 cartObject = Object.keys(cartObject).map(cartItem => {
                     if (Number(cartItem) === Number(item.id)) return {...cartObject[cartItem], quantity: cartObject[cartItem].quantity + item.quantity}
@@ -40,7 +40,6 @@ export default function ListItem({ item }) {
             } else {
                 cartObject = {...cartObject, ...addingItem}
             }
-
             localStorage.cart = JSON.stringify(cartObject)
         }
 
@@ -62,10 +61,11 @@ export default function ListItem({ item }) {
                 <div className="list__info">
                     <div className="list__text">{item.name}</div>
                     <div className="list__price">Price: <span>{item.price}$ US</span></div>
+                    <Quantity id={item.id} quantity={item.quantity} />
                 </div>
 
                 <div className="list__controller">
-                    <Quantity id={item.id} quantity={item.quantity} />
+                    
                     <div className="list__cart">
                         <div className="list__cart-image" onClick={() => (addToCart(item))}>
                             <Image src="/images/cart.svg"  width="24px" height="24px" alt="cart icon" />

@@ -6,6 +6,8 @@ import Wrapper from "../../components/Wrapper"
 
 export default function Product() {
 
+    // Create an array of objects that contains image sources 
+
     const [images, ] = React.useState(() => {
         let arr = []
         for (let i = 0; i < 4; i++) {

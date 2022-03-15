@@ -1,7 +1,7 @@
 import React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import DividingTitle from "../components/DividingTitle"
 import Wrapper from "../components/Wrapper"
@@ -10,35 +10,21 @@ import checkLocalCart from "../functions/checkLocalCart"
 
 export default function Cart() {
 
-    const [cartItems, setCartItems] = React.useState([])
+    const cartItems = useSelector(state => state.cart.cart)
+    const dispatch = useDispatch()
     const [rerender, setRerender] = React.useState(false) 
 
-    const cartToArray = (cart) => {
-
-        let newCartItems = []
-        for (let key in cart) {
-
-            if (Number(key).toString() === "NaN") {
-                localStorage.cart = JSON.stringify({})
-                return []
-            }
-
-            cart[key].id = key
-            cart[key].description = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci tempora nesciunt eos sint dolores quaerat dolorem quibusdam magni nulla illum."
-            newCartItems.push({...cart[key]})
-        }
-        return [...newCartItems]
-    }
+    // Upload data from local storage to state
 
     React.useEffect(() => {
         if (typeof localStorage.cart !== "undefined") {
             let cart = JSON.parse(localStorage.cart)
-            setCartItems(cartToArray(cart))
+            dispatch({type: actions.UPDATE_CART, payload: cart})
         }
         
     }, [rerender])
 
-    const dispatch = useDispatch()
+    // Remove item from cart. Update data in local storage and then update state.
 
     const removeProduct = (id) => {
         let cart = JSON.parse(localStorage.cart)
@@ -59,6 +45,8 @@ export default function Cart() {
         setRerender(!rerender)
     }
 
+    // Bottom component. It shows purchase button or mesage.
+
     const Bottom = ({length}) => {
         if (length === 0) {
             return (
@@ -77,6 +65,51 @@ export default function Cart() {
         }
     } 
 
+    // Increase quantity of item in state and local storage
+
+    const addThing = (id) => {
+        let newList = Object.keys(cartItems).map(item => {
+            if (item === id) {
+                return {...cartItems[item], quantity: cartItems[item].quantity + 1}
+            } else {
+                return cartItems[item]
+            }
+        })
+
+        let cartObject = JSON.parse(localStorage.cart)
+        cartObject = Object.keys(cartObject).map(cartItem => { 
+            if (Number(cartItem) === Number(id)) return {...cartObject[cartItem], quantity: cartObject[cartItem].quantity + 1}
+            else return cartObject[cartItem]
+        })
+        
+        localStorage.cart = JSON.stringify(Object.assign({}, cartObject))
+
+        dispatch({type: actions.UPDATE_CART, payload: newList})
+    }
+
+    // Increase quantity of item in state and local storage
+
+    const removeThing = (id) => {
+        let newList = Object.keys(cartItems).map(item => {
+            if (item === id && cartItems[item].quantity > 1) {
+                return {...cartItems[item], quantity: cartItems[item].quantity - 1}
+            } else {
+                return cartItems[item]
+            }
+        })
+
+        let cartObject = JSON.parse(localStorage.cart)
+
+        cartObject = Object.keys(cartObject).map(cartItem => {
+            if (Number(cartItem) === Number(id) && cartObject[cartItem].quantity > 1) return {...cartObject[cartItem], quantity: cartObject[cartItem].quantity - 1}
+            else return cartObject[cartItem]
+        })
+        
+        localStorage.cart = JSON.stringify(Object.assign({}, cartObject))
+
+        dispatch({type: actions.UPDATE_CART, payload: newList})
+    }
+
     return (
         <Wrapper>
             <DividingTitle text="Cart" />
@@ -85,26 +118,33 @@ export default function Cart() {
                     <div className="cart__content">
                         <div className="cart__list">
                             {
-                                cartItems.map(item => { 
+                                Object.keys(cartItems).map(item => {
                                     return (
-                                        <div className="cart__item" key={item.id}>
+                                        <div className="cart__item" key={item}>
                                             <Link href="/product" passHref>
                                                 <div className="cart__image">
-                                                    <Image src={item.image} alt={item.alt} layout="responsive" width="100%" height="100%" />
+                                                    <Image src={cartItems[item].image} alt={cartItems[item].alt} layout="responsive" width="100%" height="100%" />
                                                 </div>
                                             </Link>
                                             <div className="cart__info">
-                                                <div className="cart__title">{item.name}</div>
-                                                <div className="cart__price">Price: <span>{item.price}$ US</span></div>
-                                                <div className="cart__text">{item.description}</div>
-                                                <div className="cart__button button" onClick={() => {removeProduct(item.id)}}>Remove from cart</div>
+                                                <div className="cart__title">{cartItems[item].name}</div>
+                                                <div className="cart__price">Price: <span>{cartItems[item].price}$ US</span></div>
+                                                <div className="cart__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci tempora nesciunt eos sint dolores quaerat dolorem quibusdam magni nulla illum.</div>
+                                                <div className="cart__controller">
+                                                    <div className="cart__quantity quantity">
+                                                        <button onClick={() => (addThing(item))} className="quantity__button">+</button>
+                                                        <div className="quantity__value">{cartItems[item].quantity}</div>
+                                                        <button onClick={() => (removeThing(item))} className="quantity__button">-</button>
+                                                    </div>
+                                                    <div className="cart__button button" onClick={() => {removeProduct(item)}}>Remove from cart</div>
+                                                </div>
                                             </div>
                                         </div>
                                     )
                                 })
                             }     
                         </div>
-                        <Bottom length={cartItems.length}/>
+                        <Bottom length={Object.keys(cartItems).length}/>
                     </div>
                 </div>
             </div>
