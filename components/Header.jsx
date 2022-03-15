@@ -74,7 +74,7 @@ export default function Header() {
     }
 
     const cartItemsQuantity = useSelector(state => state.count.count)
-
+    
     return (
         <>
             <Head>

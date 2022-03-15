@@ -1,6 +1,6 @@
 const actions = {
     UPDATE_COUNT: "UPDATE_COUNT",
-    UPDATE_PRODUCT: "UPDATE_PRODUCT",
+    UPDATE_LIST: "UPDATE_LIST"
 }
 
 export default actions

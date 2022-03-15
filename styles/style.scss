@@ -889,10 +889,6 @@ body {
         }
     }   
 
-    &__info {
-
-    }
-
     &__text {
         color: #000;
     }
@@ -906,8 +902,21 @@ body {
         }
     }
 
+    &__controller {
+        display: flex;
+        justify-content: flex-end;
+        column-gap: 15px;
+    }
+
+    &__quantity {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
     &__cart {
         display: flex;
+        justify-self: flex-end;
         justify-content: flex-end;
         align-items: center;
         
