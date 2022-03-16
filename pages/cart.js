@@ -17,7 +17,7 @@ export default function Cart() {
     // Upload data from local storage to state
 
     React.useEffect(() => {
-        if (typeof localStorage.cart !== "undefined") {
+        if (localStorage.cart) {
             let cart = JSON.parse(localStorage.cart)
             dispatch({type: actions.UPDATE_CART, payload: cart})
         }
@@ -65,50 +65,52 @@ export default function Cart() {
         }
     } 
 
-    // Increase quantity of item in state and local storage
+    // Closure
 
-    const addThing = (id) => {
-        let newList = Object.keys(cartItems).map(item => {
-            if (item === id) {
-                return {...cartItems[item], quantity: cartItems[item].quantity + 1}
-            } else {
-                return cartItems[item]
+    const updateCart = operation => {
+
+        if (operation) {
+            return id => {
+                let newList = {}
+
+                newList = Object.keys(cartItems).map(item => {
+                    if (item === id) {
+                        return {...cartItems[item], quantity: cartItems[item].quantity + 1}
+                    } else {
+                        return cartItems[item]
+                    }
+                })
+
+                localStorage.cart = JSON.stringify(Object.assign({}, newList))  
+                dispatch({type: actions.UPDATE_CART, payload: newList})
             }
-        })
+        } else {
+            return id => {
+                let newList = {}
 
-        let cartObject = JSON.parse(localStorage.cart)
-        cartObject = Object.keys(cartObject).map(cartItem => { 
-            if (Number(cartItem) === Number(id)) return {...cartObject[cartItem], quantity: cartObject[cartItem].quantity + 1}
-            else return cartObject[cartItem]
-        })
+                newList = Object.keys(cartItems).map(item => {
+                    if (item === id && cartItems[item].quantity > 1) {
+                        return {...cartItems[item], quantity: cartItems[item].quantity - 1}
+                    } else {
+                        return cartItems[item]
+                    }
+                })
+
+                localStorage.cart = JSON.stringify(Object.assign({}, newList))  
+                dispatch({type: actions.UPDATE_CART, payload: newList})
+            }
+        }
         
-        localStorage.cart = JSON.stringify(Object.assign({}, cartObject))
-
-        dispatch({type: actions.UPDATE_CART, payload: newList})
     }
 
     // Increase quantity of item in state and local storage
 
-    const removeThing = (id) => {
-        let newList = Object.keys(cartItems).map(item => {
-            if (item === id && cartItems[item].quantity > 1) {
-                return {...cartItems[item], quantity: cartItems[item].quantity - 1}
-            } else {
-                return cartItems[item]
-            }
-        })
+    const addThing = updateCart(true)
 
-        let cartObject = JSON.parse(localStorage.cart)
+    // Decrease quantity of item in state and local storage
 
-        cartObject = Object.keys(cartObject).map(cartItem => {
-            if (Number(cartItem) === Number(id) && cartObject[cartItem].quantity > 1) return {...cartObject[cartItem], quantity: cartObject[cartItem].quantity - 1}
-            else return cartObject[cartItem]
-        })
-        
-        localStorage.cart = JSON.stringify(Object.assign({}, cartObject))
+    const removeThing = updateCart(false)
 
-        dispatch({type: actions.UPDATE_CART, payload: newList})
-    }
 
     return (
         <Wrapper>

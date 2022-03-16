@@ -24,7 +24,7 @@ export default function ListItem({ item }) {
             quantity: item.quantity
         }
 
-        if (typeof localStorage.cart === "undefined") {   
+        if (!localStorage.cart) {   
             addingItem = {...addingItem}
             localStorage.cart = JSON.stringify(addingItem)
 

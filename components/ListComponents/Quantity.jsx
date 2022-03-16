@@ -6,31 +6,41 @@ export default function Quantity({ id, quantity }) {
     const dispatch = useDispatch()
     const list = useSelector(state => state.list.list)
 
+    // Closure
+
+    const updateList = (operation) => {
+        if (operation) {
+            return () => {
+                let newList = list.map(item => {
+                    if (item.id === id) {
+                        return {...item, quantity: item.quantity + 1}
+                    } else {
+                        return item
+                    }
+                })
+                dispatch({type: actions.UPDATE_LIST, payload: newList})
+            }
+        } else {
+            return () => {
+                let newList = list.map(item => {
+                    if (item.id === id && item.quantity > 1) {
+                        return {...item, quantity: item.quantity - 1}
+                    } else {
+                        return item
+                    }
+                })
+                dispatch({type: actions.UPDATE_LIST, payload: newList})
+            }
+        }
+    }
+
     // Increase quantity of item in state
 
-    const addThing = () => {
-        let newList = list.map(item => {
-            if (item.id === id) {
-                return {...item, quantity: item.quantity + 1}
-            } else {
-                return item
-            }
-        })
-        dispatch({type: actions.UPDATE_LIST, payload: newList})
-    }
+    const addThing = updateList(true)
 
     // Decrease quantity of item in state
 
-    const removeThing = () => {
-        let newList = list.map(item => {
-            if (item.id === id && item.quantity > 1) {
-                return {...item, quantity: item.quantity - 1}
-            } else {
-                return item
-            }
-        })
-        dispatch({type: actions.UPDATE_LIST, payload: newList})
-    }
+    const removeThing = updateList(false)
 
     return (
         <div className="list__quantity quantity">
